@@ -185,4 +185,58 @@ v_\pi(s) = \sum_{a\in A} \pi(a|s)(R_s^a + \gamma \sum_{s' \in S}P_{ss'}^a v_\pi(
 $$
 we can stich in the opposite direction alos to tget the Bellman Equation for $q_\pi$ 
 
-1:00:00
+### Optimal Value Function
+
+The optimal state-value function is the maximum value function for all policies
+$$
+v_{*}(s) = \max_{\pi} v_{\pi}(s)
+$$
+The optimal action-value function is the maximum action-value function for all policies 
+$$
+q_{*}(s,a) = \max_{\pi}q_{\pi}(s,a)
+$$
+MDP is soved when we know the optimal value function
+
+Partisl ordering of policies 
+$$
+\pi \geq \pi^{'} \text{if } v_{\pi}(s) \geq v_{\pi}(s'), \forall s
+$$
+
+#### Theorem
+
+For any Markov Decision Process
+
+- There exist an optimal policy $\pi_{*}$ that is better than or eqial to other policies $ \pi_{*}\geq \pi , \forall \pi$ 
+
+- Optimal policies achive the optimal value function 
+
+  $v_{\pi_{*}}(s) = v_{*}(s)$
+
+- Optimal policies achive the optimal action-value function $q_{\pi_{*}}(s,a) = q_{*}(s,a)$
+
+- There can exist more than one optimal policy.
+
+To find optimal policy given we have the $q_{*}$, we can find the action that has maximum $q_{*}$ in a state, and then include that action in the optimal policy
+$$
+\pi_{*}(a|s) = \begin{cases}1, \text{if } a= argmax_{a \in A}q_{*}(s|a) \\ 0, otherwise \end{cases}
+$$
+There is always a deterministic policy for any MDP
+
+### Bellman Optimality Equation
+
+$$
+v_{*}(s) = \max_{a}q_{*}(s,a)
+$$
+
+The bellman optima equation for $q_*$
+$$
+q_*(s,a) = R_s^a + \gamma \sum_{s' \in S} P_{ss'}^a v_*(s')
+$$
+Now putting eqation 26 and equation 27 together we get the $v_*$ in terms of itself
+$$
+v_*(s) = \max_\pi R_s^a + \gamma \sum_{s' \in S} P_{ss'}^av_{*}(s)
+$$
+The equation for $q_*$ is 
+$$
+q_*(s,a) = R_s^a + \gamma \sum_{s' \in S} P_{ss'}^a \max_{a'} q_{*}(s',a')
+$$
